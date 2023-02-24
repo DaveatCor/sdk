@@ -56,9 +56,20 @@ class WebViewRunner {
             await _web?.webViewController.reload();
           }
         },
-        initialUrlRequest: URLRequest(
-            url: Uri.parse(
-                "packages/polkawallet_sdk/assets/index.html")),
+        initialData: InAppWebViewInitialData(
+          data: """
+            <!DOCTYPE html>
+            <html lang="en">
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+                </head>
+                <body>
+                </body>
+            </html>
+
+          """
+        ),
         onWebViewCreated: (controller) {
           print('HeadlessInAppWebView created!');
         },
@@ -126,6 +137,7 @@ class WebViewRunner {
 //           if (webViewLoaded) return;
 //           print("jsLoaded $jsLoaded");
 //           if (jsLoaded == true) {
+            print("_jsCode $_jsCode");
             webViewLoaded = true;
             await _startJSCode();
 //           }
