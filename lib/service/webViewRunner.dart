@@ -58,7 +58,7 @@ class WebViewRunner {
         },
         initialUrlRequest: URLRequest(
             url: Uri.parse(
-                "http://localhost:8080/packages/polkawallet_sdk/assets/index.html")),
+                "packages/polkawallet_sdk/assets/index.html")),
         onWebViewCreated: (controller) {
           print('HeadlessInAppWebView created!');
         },
