@@ -121,14 +121,14 @@ class WebViewRunner {
           }
         },
         onLoadStop: (controller, url) async {
-          print('webview loaded $url');
-          final jsLoaded = await _web!.webViewController.evaluateJavascript(source: url);
-          if (webViewLoaded) return;
-          print("jsLoaded $jsLoaded");
-          if (jsLoaded == true) {
+//           print('webview loaded $url');
+//           final jsLoaded = await _web!.webViewController.evaluateJavascript(source: url);
+//           if (webViewLoaded) return;
+//           print("jsLoaded $jsLoaded");
+//           if (jsLoaded == true) {
             webViewLoaded = true;
             await _startJSCode();
-          }
+//           }
         },
         onLoadError: (controller, url, code, message) {
           print("webview restart");
