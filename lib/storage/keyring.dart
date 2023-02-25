@@ -249,8 +249,8 @@ class KeyringPrivateStore {
     final String? encrypted = await FlutterAesEcbPkcs5.encryptString(seed, key);
 
     // read old data from storage-old
-    final Map<String, dynamic> stored = await (_storageOld.getSeeds(seedType)
-        as Future<Map<String, dynamic>>);
+    final Map<dynamic, dynamic> stored = await (_storageOld.getSeeds(seedType)
+        as Future<Map<dynamic, dynamic>>);
     stored[pubKey] = encrypted;
     // and save to new storage
     if (seedType == KeyType.mnemonic.toString().split('.')[1]) {
@@ -268,7 +268,7 @@ class KeyringPrivateStore {
 
   Future<void> updateEncryptedSeed(String? pubKey, passOld, passNew) async {
     final seed = await (getDecryptedSeed(pubKey, passOld)
-        as Future<Map<String, dynamic>>);
+        as Future<Map<dynamic, dynamic>>);
     encryptSeedAndSave(pubKey, seed['seed'], seed['type'], passNew);
   }
 
