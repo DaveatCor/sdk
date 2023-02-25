@@ -250,7 +250,7 @@ class KeyringPrivateStore {
 
     // read old data from storage-old
     final Map<dynamic, dynamic> stored = await (_storageOld.getSeeds(seedType)
-        as Future<Map<dynamic, dynamic>>);
+        as Future<Map<dynamic, dynamic>?>);
     stored[pubKey] = encrypted;
     // and save to new storage
     if (seedType == KeyType.mnemonic.toString().split('.')[1]) {
