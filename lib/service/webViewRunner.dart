@@ -231,7 +231,7 @@ class WebViewRunner {
         : evalJavascript(
             'settings.connect(${jsonEncode(nodes.map((e) => e.endpoint).toList())})'));
     if (res != null) {
-      final index = nodes.indexWhere((e) => e.endpoint!.trim() == res.trim());
+      // final index = nodes.indexWhere((e) => e.endpoint!.trim() == res.trim());
       if (_webViewOOMReload) {
         print(
             "webView OOM Reload evaluateJavascript====\n${_msgJavascript.keys.toString()}");
@@ -241,7 +241,7 @@ class WebViewRunner {
         _msgJavascript = {};
         _webViewOOMReload = false;
       }
-      return nodes[index > -1 ? index : 0];
+      return res;//nodes[index > -1 ? index : 0];
     }
     return null;
   }
