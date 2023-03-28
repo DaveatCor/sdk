@@ -230,6 +230,8 @@ class WebViewRunner {
             'settings.connectAll(${jsonEncode(nodes.map((e) => e.endpoint).toList())})')
         : evalJavascript(
             'settings.connect(${jsonEncode(nodes.map((e) => e.endpoint).toList())})'));
+    
+    print("res $res");
     if (res != null) {
       final index = nodes.indexWhere((e) => e.endpoint!.trim() == res.trim());
       print("index $index");
