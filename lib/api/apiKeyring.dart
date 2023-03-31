@@ -203,9 +203,8 @@ class ApiKeyring {
   }
 
   /// Decrypt and get the backup of seed.
-  Future<SeedBackupData?> getDecryptedSeed(Keyring keyring, password) async {
-    final Map? data =
-        await keyring.store.getDecryptedSeed(keyring.current.pubKey, password);
+  Future<SeedBackupData?> getDecryptedSeed(Keyring keyring, KeyPairData acc, password) async {
+    final Map? data = await keyring.store.getDecryptedSeed(acc.pubKey, password);
     if (data == null) {
       return null;
     }
@@ -227,9 +226,8 @@ class ApiKeyring {
   }
 
   /// change password of account
-  Future<KeyPairData?> changePassword(
-      Keyring keyring, String passOld, passNew) async {
-    final acc = keyring.current;
+  Future<KeyPairData?> changePassword(Keyring keyring, KeyPairData acc, String passOld, passNew) async {
+    // final acc = keyring.current;
     // 1. change password of keyPair in webView
     final res = await service!.changePassword(acc.pubKey, passOld, passNew);
     if (res == null) {
@@ -246,8 +244,8 @@ class ApiKeyring {
   }
 
   /// change name of account
-  Future<KeyPairData> changeName(Keyring keyring, String name) async {
-    final json = keyring.current.toJson();
+  Future<KeyPairData> changeName(Keyring keyring, KeyPairData acc, String name) async {
+    final json = acc.toJson();
     // update json meta data
     service!.updateKeyPairMetaData(json, name);
     // update keyPair date in storage

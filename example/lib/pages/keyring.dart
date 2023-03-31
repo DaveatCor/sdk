@@ -82,8 +82,7 @@ class _KeyringPageState extends State<KeyringPage> {
     setState(() {
       _submitting = true;
     });
-    final seed = await widget.sdk.api.keyring
-        .getDecryptedSeed(widget.keyring, _testPass);
+    final seed = await widget.sdk.api.keyring.getDecryptedSeed(widget.keyring, widget.keyring.current, _testPass);
 //        await widget.sdk.api.keyring.getDecryptedSeed(_testAcc, 'a654321');
     widget.showResult(
       context,
@@ -250,7 +249,7 @@ class _KeyringPageState extends State<KeyringPage> {
     });
     final res = await widget.sdk.api.keyring
 //        .changePassword(widget.keyring, _testAcc, _testPass, 'a654321');
-        .changePassword(widget.keyring, 'a654321', _testPass);
+        .changePassword(widget.keyring, widget.keyring.current, 'a654321', _testPass);
     widget.showResult(
       context,
       'changePassword',
@@ -274,7 +273,7 @@ class _KeyringPageState extends State<KeyringPage> {
       _submitting = true;
     });
     final res =
-        await widget.sdk.api.keyring.changeName(widget.keyring, 'newName');
+        await widget.sdk.api.keyring.changeName(widget.keyring, widget.keyring.current, 'newName');
     widget.showResult(
       context,
       'changeName',  JsonEncoder.withIndent('  ').convert(res.toJson()),
