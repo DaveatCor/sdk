@@ -200,16 +200,31 @@ class KeyringPrivateStore {
 
   Future<void> _updateKeyPair(Map acc) async {
     final List pairs = _storage.keyPairs.val.toList();
-    pairs.removeWhere((e) => e['pubKey'] == acc['pubKey']);
-    pairs.add(acc);
+    // pairs.removeWhere((e) => e['pubKey'] == acc['pubKey']);
+    // pairs.where((element) )
+    // pairs.indexOf(acc);
+    // pairs.add(acc);
+
+    /// Find Old Account In Storage
+    List foundAcc = pairs.where((o) => o['address'] == acc['address']).toList();
+
+    print("foundAcc ${foundAcc[0]}");
+
+    print("pairs[pairs.indexOf(foundAcc[0])] ${pairs[pairs.indexOf(foundAcc[0])]}");
+
+    // Assign Index of Account Found
+    pairs[pairs.indexOf(foundAcc[0])] = acc;
+
+    print("acc $acc");
+
     _storage.keyPairs.val = pairs;
   }
 
   Future<void> updateContact(Map acc) async {
     final ls = _storage.contacts.val.toList();
-    ls.removeWhere((e) => e['pubKey'] == acc['pubKey']);
-    ls.add(acc);
-    _storage.contacts.val = ls;
+    // ls.removeWhere((e) => e['pubKey'] == acc['pubKey']);
+    // ls.add(acc);
+    _storage.contacts.val = ls;//ls[ls.indexOf(acc)];
   }
 
   Future<void> deleteAccount(String? pubKey) async {
