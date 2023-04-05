@@ -224,6 +224,9 @@ class KeyringPrivateStore {
     final ls = _storage.contacts.val.toList();
     // ls.removeWhere((e) => e['pubKey'] == acc['pubKey']);
     // ls.add(acc);
+    List foundAcc = ls.where((o) => o['address'] == acc['address']).toList();
+
+    ls[ls.indexOf(foundAcc[0])] = acc;
     _storage.contacts.val = ls;//ls[ls.indexOf(acc)];
   }
 
