@@ -63,7 +63,11 @@ class SubstrateService {
     eth = ServiceEth(this);
 
     _web = webViewParam ?? WebViewRunner();
+
+    print("_web ${_web!.webViewLoaded}");
     await _web!.launch(onInitiated,
         jsCode: jsCode, socketDisconnectedAction: socketDisconnectedAction);
+    
+    print("_web!.launch ${_web!.webViewLoaded}");
   }
 }
