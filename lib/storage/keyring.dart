@@ -284,9 +284,8 @@ class KeyringPrivateStore {
   }
 
   Future<void> updateEncryptedSeed(String? pubKey, passOld, passNew) async {
-    final seed = await (getDecryptedSeed(pubKey, passOld)
-        as Future<Map<dynamic, dynamic>>);
-    encryptSeedAndSave(pubKey, seed['seed'], seed['type'], passNew);
+    final seed = await getDecryptedSeed(pubKey, passOld);
+    encryptSeedAndSave(pubKey, seed!['seed'], seed!['type'], passNew);
   }
 
   Future<Map<String, dynamic>?> getDecryptedSeed(
